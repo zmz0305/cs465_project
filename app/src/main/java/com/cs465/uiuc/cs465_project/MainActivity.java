@@ -3,6 +3,7 @@ package com.cs465.uiuc.cs465_project;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.ListView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -36,5 +37,11 @@ public class MainActivity extends AppCompatActivity {
         BarData data = new BarData(dataSet);
         barChart.setData(data);
         //barChart.invalidate();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.popup_menu, menu);
+        return true;
     }
 }
