@@ -16,7 +16,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Settings" />
-        <activity android:name=".DataOutputActivity" android:label="@string/data_output_name"></activity>
+        <activity
+            android:name=".DataOutputActivity"
+            android:label="@string/data_output_name" />
+        <activity android:name=".AppScreen"></activity>
     </application>
 
 </manifest>
