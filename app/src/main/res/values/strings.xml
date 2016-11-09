@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">cs465_project</string>
-    <string name="data_output_name">Output Data</string>
+    <string name="data_output_name">Export Data</string>
     <string-array name="syncFrequency">
         <item name="1">Once a day</item>
         <item name="7">Once a week</item>
