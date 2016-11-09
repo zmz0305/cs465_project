@@ -1,32 +1,6 @@
 <resources>
     <string name="app_name">cs465_project</string>
-    <string-array name="syncFrequency">
-        <item name="1">Once a day</item>
-        <item name="7">Once a week</item>
-        <item name="3">Once a year</item>
-        <item name="0">Never (Update maually)</item>
-    </string-array>
-    <string-array name="syncFrequencyValues">
-        <item name="1">1</item>
-        <item name="7">7</item>
-        <item name="30">30</item>
-        <item name="0">0</item>
-    </string-array>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">MainActivity</string>
-
-
-    <string name="pref_send_report">Send crash reports</string>
-    <string name="pref_send_report_summary">Helps to fix bugs</string>
-    <string name="pref_sync_frequency">Sync frequency</string>
-    <string name="pref_sync_frequency_summary">Set the sync frequency</string>
-    <string name="pref_user_name">Set username</string>
-    <string name="pref_user_name_summary">Set your username</string>
-
-    <string name="pref_user_profile">User Profile</string>
-    <string name="pref_update_setting">Update Settings</string>
     <string-array name="app_list">
         <item>App1</item>
         <item>App2</item>
@@ -34,4 +8,28 @@
         <item>App4</item>
         <item>App5</item>
     </string-array>
+
+
+
+    <string name="title_first_section">First Section</string>
+    <string name="title_checkbox_preference">title_checkbox_preference</string>
+    <string name="default_checkbox_preference">default_checkbox_preference</string>
+    <string name="title_edittext_preference">title_edittext_preference</string>
+    <string name="summary_edittext_preference">summary_edittext_preference</string>
+    <string name="dialog_title_edittext_preference">dialog_title_edittext_preference</string>
+    <string name="title_second_section">Second Section</string>
+    <string name="title_list_preference">title_list_preference</string>
+    <string name="dialog_title_list_preference">dialog_title_list_preference</string>
+    <string-array name="entries_list_preference">
+        <item>111</item>
+        <item>222</item>
+        <item>333</item>
+    </string-array>
+    <string-array name="entryvalues_list_preference">
+        <item>444</item>
+        <item>555</item>
+        <item>666</item>
+    </string-array>
+
+    <string name="title_intent_preference">title_intent_preference</string>
 </resources>
