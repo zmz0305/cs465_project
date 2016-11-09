@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/activity_feed_button"
+        android:title="Activity Feed" />
+    <item android:id="@+id/my_limit_button"
+        android:title="My Limit" />
+    <item android:id="@+id/my_apps_button"
+        android:title="My Apps" />
+    <item android:id="@+id/settings_button"
+        android:title="Settings" />
+    <item android:id="@+id/export_data_button"
+        android:title="Export Data" />
+</menu>
