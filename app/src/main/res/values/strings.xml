@@ -27,4 +27,11 @@
 
     <string name="pref_user_profile">User Profile</string>
     <string name="pref_update_setting">Update Settings</string>
+    <string-array name="app_list">
+        <item>App1</item>
+        <item>App2</item>
+        <item>App3</item>
+        <item>App4</item>
+        <item>App5</item>
+    </string-array>
 </resources>
