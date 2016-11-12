@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.settings_button:
                 // User chose the "Favorite" action, mark the current item
                 // as a favorite...
+                Intent settingIntent = new Intent(this, Settings.class);
+                this.startActivity(settingIntent);
                 return true;
 
             case R.id.export_data_button:

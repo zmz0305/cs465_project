@@ -16,7 +16,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".Settings" />
-        <activity android:name=".DataOutputActivity" android:label="@string/data_output_name"></activity>
+        <activity
+            android:name=".DataOutputActivity"
+            android:label="@string/data_output_name" />
+        <activity
+            android:name=".Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

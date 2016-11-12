@@ -22,7 +22,6 @@ public class Settings extends PreferenceFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
         mListPreference = (ListPreference)  getPreferenceManager().findPreference("preference_key");
         mListPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override

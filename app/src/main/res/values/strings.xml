@@ -28,7 +28,6 @@
     </string-array>
 
 
-
     <string name="title_first_section">First Section</string>
     <string name="title_checkbox_preference">title_checkbox_preference</string>
     <string name="default_checkbox_preference">default_checkbox_preference</string>
@@ -50,4 +49,5 @@
     </string-array>
 
     <string name="title_intent_preference">title_intent_preference</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>
