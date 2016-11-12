@@ -10,7 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     tools:context="com.cs465.uiuc.cs465_project.MainActivity">
-
     <ListView
         android:id="@+id/list_view"
         android:layout_width="fill_parent"

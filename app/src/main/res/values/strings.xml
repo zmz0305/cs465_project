@@ -50,9 +50,12 @@
 
     <string name="title_intent_preference">title_intent_preference</string>
     <string name="title_activity_main2">Main2Activity</string>
-    <string-array name ="dayWeekMenu">
+    <string-array name="dayWeekMenu">
         <item name="day">day</item>
         <item name="week">week</item>
         <item name="month">month</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

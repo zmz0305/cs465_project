@@ -1,31 +1,34 @@
 package com.cs465.uiuc.cs465_project;
 
+import android.app.Activity;
+import android.preference.ListPreference;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 
-/**
- * Created by zmz0305 on 11/8/16.
- */
+public class SettingsActivity extends Activity {
+    private ListPreference mListPreference;
 
-public class SettingsActivity extends AppCompatActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.fragment_settings);
+        getFragmentManager().beginTransaction()
+                .add(R.id.container, new SettingsFragment())
+                .commit();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
+
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//
+//        mListPreference = (ListPreference)  getPreferenceManager().findPreference("preference_key");
+//        mListPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+//            @Override
+//            public boolean onPreferenceChange(Preference preference, Object newValue) {
+//                // insert custom code
+//                return true;
+//            }
+//        });
+//
+//        return inflater.inflate(R.layout.activity_settings, container, false);
+//    }
 }
