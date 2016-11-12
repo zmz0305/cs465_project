@@ -20,11 +20,11 @@
     <string name="title_activity_main">MainActivity</string>
 
     <string-array name="app_list">
-        <item>App1</item>
-        <item>App2</item>
-        <item>App3</item>
-        <item>App4</item>
-        <item>App5</item>
+        <item>Facebook</item>
+        <item>Snapchat</item>
+        <item>Instagram</item>
+        <item>Twitter</item>
+        <item>Flappy Bird</item>
     </string-array>
 
 
