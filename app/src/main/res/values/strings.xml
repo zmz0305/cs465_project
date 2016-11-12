@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">cs465_project</string>
+    <string name="data_output_name">Export Data</string>
 
-    <string name="data_output_name">Output Data</string>
     <string-array name="syncFrequency">
         <item name="1">Once a day</item>
         <item name="7">Once a week</item>
@@ -20,11 +20,11 @@
     <string name="title_activity_main">MainActivity</string>
 
     <string-array name="app_list">
-        <item>App1</item>
-        <item>App2</item>
-        <item>App3</item>
-        <item>App4</item>
-        <item>App5</item>
+        <item>Facebook</item>
+        <item>Snapchat</item>
+        <item>Instagram</item>
+        <item>Twitter</item>
+        <item>Flappy Bird</item>
     </string-array>
 
 
@@ -50,4 +50,9 @@
 
     <string name="title_intent_preference">title_intent_preference</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string-array name ="dayWeekMenu">
+        <item name="day">day</item>
+        <item name="week">week</item>
+        <item name="month">month</item>
+    </string-array>
 </resources>

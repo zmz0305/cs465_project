@@ -11,20 +11,6 @@
     android:orientation="vertical"
     tools:context="com.cs465.uiuc.cs465_project.MainActivity">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:gravity="center"
-            android:text="Activity Feed"/>
-    </LinearLayout>
-
     <ListView
         android:id="@+id/list_view"
         android:layout_width="fill_parent"
@@ -42,31 +28,45 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="52dp">
 
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"/>
         <ImageButton
             android:id="@+id/modular_button1"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/abc_btn_check_material"/>
-
+            android:src="@mipmap/ic_lock"/>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"/>
         <ImageButton
             android:id="@+id/modular_button2"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/abc_btn_check_material"/>
-
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_phone"/>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"/>
         <ImageButton
             android:id="@+id/modular_button3"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/abc_btn_check_material"/>
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_text"/>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"/>
 
     </LinearLayout>
 
