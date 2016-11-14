@@ -29,43 +29,30 @@
         android:layout_width="match_parent"
         android:layout_height="52dp">
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"/>
         <ImageButton
             android:id="@+id/modular_button1"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@mipmap/ic_lock"/>
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"/>
+            android:background="#0000"
+            android:src="@drawable/ic_lock_open_black_24dp"/>
         <ImageButton
             android:id="@+id/modular_button2"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_phone"/>
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"/>
+            android:background="#0000"
+            android:src="@drawable/ic_phone_in_talk_black_24dp"/>
         <ImageButton
             android:id="@+id/modular_button3"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_text"/>
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"/>
+            android:background="#0000"
+            android:src="@drawable/ic_question_answer_black_24dp"/>
 
     </LinearLayout>
 
