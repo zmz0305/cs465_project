@@ -32,6 +32,10 @@
         <item>Groupme</item>
     </string-array>
 
+    <string name="mod_button1_text">52 Unlocks</string>
+    <string name="mod_button2_text">6 Calls Made</string>
+    <string name="mod_button3_text">41 Texts Sent</string>
+
 
     <string name="title_first_section">First Section</string>
     <string name="title_checkbox_preference">title_checkbox_preference</string>

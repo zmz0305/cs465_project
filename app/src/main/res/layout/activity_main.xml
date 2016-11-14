@@ -32,8 +32,8 @@
         android:cacheColorHint="@android:color/transparent"
         android:divider="#CCCCCC"
         android:dividerHeight="1dp"
-        android:paddingLeft="2dp"
-        android:entries="@array/app_list">
+        android:paddingLeft="2dp">
+        <!--android:entries="@array/app_list">-->
 
     </ListView>
 
@@ -50,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="#0000"
+            android:onClick="modButton1"
             android:src="@drawable/ic_lock_open_black_24dp"/>
         <ImageButton
             android:id="@+id/modular_button2"
@@ -58,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#0000"
+            android:onClick="modButton2"
             android:src="@drawable/ic_phone_in_talk_black_24dp"/>
         <ImageButton
             android:id="@+id/modular_button3"
@@ -66,6 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#0000"
+            android:onClick="modButton3"
             android:src="@drawable/ic_question_answer_black_24dp"/>
 
     </LinearLayout>
@@ -84,7 +87,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:textSize="15sp"
-            android:text="52 Unlocks"/>
+            android:text="@string/mod_button1_text"/>
 
         <TextView
             android:id="@+id/modular_text2"
@@ -94,7 +97,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:textSize="15sp"
-            android:text="6 Calls Made"/>
+            android:text="@string/mod_button2_text"/>
 
         <TextView
             android:id="@+id/modular_text3"
@@ -104,7 +107,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:textSize="15sp"
-            android:text="72 Texts Sent"/>
+            android:text="@string/mod_button3_text"/>
 
     </LinearLayout>
 
