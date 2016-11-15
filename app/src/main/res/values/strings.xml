@@ -28,24 +28,25 @@
     </string-array>
 
 
-    <string name="title_first_section">First Section</string>
+    <string name="title_first_section">Settings</string>
     <string name="title_checkbox_preference">title_checkbox_preference</string>
     <string name="default_checkbox_preference">default_checkbox_preference</string>
     <string name="title_edittext_preference">title_edittext_preference</string>
     <string name="summary_edittext_preference">summary_edittext_preference</string>
     <string name="dialog_title_edittext_preference">dialog_title_edittext_preference</string>
     <string name="title_second_section">Second Section</string>
-    <string name="title_list_preference">title_list_preference</string>
+    <string name="title_list_preference">Rollover time</string>
+    <string name="title_list_preference2">Export file type</string>
     <string name="dialog_title_list_preference">dialog_title_list_preference</string>
-    <string-array name="entries_list_preference">
-        <item>111</item>
-        <item>222</item>
-        <item>333</item>
+    <string-array name="roll_over_time_list">
+        <item>1 Day</item>
+        <item>1 Week</item>
+        <item>1 Month</item>
     </string-array>
-    <string-array name="entryvalues_list_preference">
-        <item>444</item>
-        <item>555</item>
-        <item>666</item>
+    <string-array name="notification_type_list">
+        <item>off</item>
+        <item>push notification</item>
+        <item>drop-down notification</item>
     </string-array>
 
     <string name="title_intent_preference">title_intent_preference</string>

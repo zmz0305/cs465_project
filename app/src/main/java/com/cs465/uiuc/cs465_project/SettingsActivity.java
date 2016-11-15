@@ -17,18 +17,5 @@ public class SettingsActivity extends Activity {
 
     }
 
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//
-//        mListPreference = (ListPreference)  getPreferenceManager().findPreference("preference_key");
-//        mListPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-//            @Override
-//            public boolean onPreferenceChange(Preference preference, Object newValue) {
-//                // insert custom code
-//                return true;
-//            }
-//        });
-//
-//        return inflater.inflate(R.layout.activity_settings, container, false);
-//    }
+
 }
