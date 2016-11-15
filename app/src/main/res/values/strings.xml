@@ -25,7 +25,16 @@
         <item>Instagram</item>
         <item>Twitter</item>
         <item>Flappy Bird</item>
+        <item>Prism</item>
+        <item>Settings</item>
+        <item>Text</item>
+        <item>Phone</item>
+        <item>Groupme</item>
     </string-array>
+
+    <string name="mod_button1_text">52 Unlocks</string>
+    <string name="mod_button2_text">6 Calls Made</string>
+    <string name="mod_button3_text">41 Texts Sent</string>
 
 
     <string name="title_first_section">Settings</string>
