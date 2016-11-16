@@ -28,6 +28,7 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.gms.vision.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,9 +49,13 @@ public class MainActivity extends AppCompatActivity{
     String[][] labels;
     TextView[] modText;
     ImageButton[] modButton;
-    String[] modLabels;
+    String[][] modLabels;
+    String[] modTime;
     int[] modPics;
     int modChange;
+    TextView currentApp;
+    TextView statsTime;
+    int[] modButs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +69,19 @@ public class MainActivity extends AppCompatActivity{
         timeView = 0;
         appSelected = 0;
         modChange = 0;
-        modLabels = new String[]{"7 Emails Sent", "15 Emails Opened", "9 Browsers Opened", "4 Notes Written", "2 Alarms Set", "27 Pictures Taken",
-            "3 Videos Taken", "7 Times Muted", "32 Songs Played", "52 Unlocks", "6 Calls Made", "41 Texts Sent"};
+        modButs = new int[]{9, 10, 11};
+        modLabels = new String[][]{{"7 Emails Sent", "15 Emails Opened", "9 Browsers Opened", "4 Notes Written", "2 Alarms Set", "27 Pictures Taken",
+            "3 Videos Taken", "7 Times Muted", "32 Songs Played", "52 Unlocks", "6 Calls Made", "41 Texts Sent"},
+                {"15 Emails Sent", "35 Emails Opened", "50 Browsers Opened", "14 Notes Written", "11 Alarms Set", "79 Pictures Taken",
+                        "15 Videos Taken", "79 Times Muted", "158 Songs Played", "207 Unlocks", "64 Calls Made", "142 Texts Sent"},
+                {"102 Emails Sent", "206 Emails Opened", "104 Browsers Opened", "192 Notes Written", "20 Alarms Set", "310 Pictures Taken",
+                        "41 Videos Taken", "45 Times Muted", "401 Songs Played", "830 Unlocks", "59 Calls Made", "589 Texts Sent"}};
+        modTime = new String[]{"Daily Stats", "Weekly Stats", "Monthly Stats"};
         modPics = new int[]{R.drawable.ic_email_black_24dp, R.drawable.ic_drafts_black_24dp, R.drawable.ic_language_black_24dp, R.drawable.ic_mode_edit_black_24dp,
                 R.drawable.ic_alarm_on_black_24dp, R.drawable.ic_photo_camera_black_24dp, R.drawable.ic_videocam_black_24dp, R.drawable.ic_volume_off_black_24dp,
                 R.drawable.ic_audiotrack_black_24dp, R.drawable.ic_lock_open_black_24dp, R.drawable.ic_phone_in_talk_black_24dp, R.drawable.ic_question_answer_black_24dp};
+        statsTime = (TextView)findViewById(R.id.mod_time);
+        statsTime.setText(modTime[timeView]);
         apps = new AppItem[10];
         modText = new TextView[3];
         modText[0] = (TextView) findViewById(R.id.modular_text1);
@@ -80,9 +93,10 @@ public class MainActivity extends AppCompatActivity{
         modButton[2] = (ImageButton)findViewById(R.id.modular_button3);
         appNames = new String[]{"Facebook", "Snapchat", "Instagram", "Twitter", "Flappy Bird", "Prism", "Settings", "Text", "Phone", "Groupme"};
         for(int i = 0; i < 10; i++) apps[i] = new AppItem(appNames[i], i);
+        currentApp = (TextView)findViewById(R.id.current_app);
+        currentApp.setText(appNames[0]);
         d = new Description();
-        d.setText(appNames[0]);
-        d.setTextSize(40);
+        d.setText("");
         barChart.setDescription(d);
         labels = new String[3][];
         labels[0] = new String[]{"3AM", "6AM", "9AM", "12PM", "3PM", "6PM", "9PM", "12AM"};
@@ -135,6 +149,10 @@ public class MainActivity extends AppCompatActivity{
                     xAxis.setValueFormatter(new MyXAxisValueFormatter(labels[2]));
                     timeView = 2;
                 }
+                statsTime.setText(modTime[timeView]);
+                modText[0].setText(modLabels[timeView][modButs[0]]);
+                modText[1].setText(modLabels[timeView][modButs[1]]);
+                modText[2].setText(modLabels[timeView][modButs[2]]);
             }
             public void onChartScale(MotionEvent me, float scaleX, float scaleY) {}
             public void onChartTranslate(MotionEvent me, float dX, float dY) {}};
@@ -149,8 +167,7 @@ public class MainActivity extends AppCompatActivity{
                 else if(timeView == 1) dataSet = new BarDataSet(apps[i].weeklyEntry, "Weekly");
                 else dataSet = new BarDataSet(apps[i].monthlyEntry, "Monthly");
                 dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-                d.setText(appNames[i]);
-                barChart.setDescription(d);
+                currentApp.setText(appNames[i]);
                 appSelected = i;
                 data = new BarData(dataSet);
                 barChart.setData(data);
@@ -190,21 +207,24 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void modButton1(View v) {
-        modText[0].setText(modLabels[modChange]);
+        modText[0].setText(modLabels[timeView][modChange]);
         modButton[0].setImageResource(modPics[modChange]);
+        modButs[0] = modChange;
         if(modChange < 11) modChange++;
         else modChange = 0;
     }
 
     public void modButton2(View v) {
-        modText[1].setText(modLabels[modChange]);
+        modText[1].setText(modLabels[timeView][modChange]);
         modButton[1].setImageResource(modPics[modChange]);
+        modButs[1] = modChange;
         if(modChange < 11) modChange++;
         else modChange = 0;
     }
     public void modButton3(View v) {
-        modText[2].setText(modLabels[modChange]);
+        modText[2].setText(modLabels[timeView][modChange]);
         modButton[2].setImageResource(modPics[modChange]);
+        modButs[2] = modChange;
         if(modChange < 11) modChange++;
         else modChange = 0;
     }
