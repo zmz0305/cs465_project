@@ -1,5 +1,6 @@
 package com.cs465.uiuc.cs465_project;
 
+import android.app.Activity;
 import android.preference.PreferenceFragment;
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,14 +8,18 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -56,6 +61,8 @@ public class MainActivity extends AppCompatActivity{
     TextView currentApp;
     TextView statsTime;
     int[] modButs;
+    int[] percents;
+    int[] times;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +76,8 @@ public class MainActivity extends AppCompatActivity{
         timeView = 0;
         appSelected = 0;
         modChange = 0;
+        percents = new int[]{21, 16, 12, 9, 8, 8, 5, 4, 2, 2};
+        times = new int[]{52, 31, 20, 15, 12, 12, 7, 6, 3, 3};
         modButs = new int[]{9, 10, 11};
         modLabels = new String[][]{{"7 Emails Sent", "15 Emails Opened", "9 Browsers Opened", "4 Notes Written", "2 Alarms Set", "27 Pictures Taken",
             "3 Videos Taken", "7 Times Muted", "32 Songs Played", "52 Unlocks", "6 Calls Made", "41 Texts Sent"},
@@ -159,7 +168,8 @@ public class MainActivity extends AppCompatActivity{
 
         barChart.setOnChartGestureListener(gestureListener);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, appNames);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, appNames);
+        CustomList adapter = new CustomList(MainActivity.this, appNames, modPics, percents, times);
         faves.setAdapter(adapter);
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -203,6 +213,40 @@ public class MainActivity extends AppCompatActivity{
             dailyEntry.add(new BarEntry(index, value));
             weeklyEntry.add(new BarEntry(index, value2));
             monthlyEntry.add(new BarEntry(index, value3));
+        }
+    }
+
+    public class CustomList extends ArrayAdapter<String> {
+        private final Activity context;
+        private final String[] appName;
+        private final int[] imageId;
+        private final int[] percents;
+        private final int[] times;
+        public CustomList(Activity context,
+                          String[] appName, int[] imageId, int[] percents, int[] times) {
+            super(context, R.layout.list_single, appName);
+            this.context = context;
+            this.appName = appName;
+            this.imageId = imageId;
+            this.percents = percents;
+            this.times = times;
+        }
+
+        public View getView(int position, View view, ViewGroup parent) {
+            LayoutInflater inflater = context.getLayoutInflater();
+            View rowView= inflater.inflate(R.layout.list_single, null, true);
+
+            TextView txtTitle = (TextView) rowView.findViewById(R.id.list_text);
+            ImageView imageView = (ImageView) rowView.findViewById(R.id.list_image);
+            ProgressBar barView = (ProgressBar)rowView.findViewById(R.id.list_bar);
+            TextView txtPercent = (TextView)rowView.findViewById(R.id.list_percent);
+
+            txtTitle.setText(appName[position]);
+            imageView.setImageResource(imageId[position]);
+            barView.setMax(100);
+            barView.setProgress(percents[position]);
+            txtPercent.setText((times[position]/60) + "h " + (times[position]%60) + "m");
+            return rowView;
         }
     }
 
