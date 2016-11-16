@@ -1,47 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <PreferenceCategory
-        android:title="@string/title_first_section">
-        <!--<CheckBoxPreference-->
-            <!--android:key="checkbox_preference"-->
-            <!--android:title="@string/title_checkbox_preference"-->
-            <!--android:defaultValue="@string/default_checkbox_preference"/>-->
-
-        <ListPreference
-            android:key="list_preference"
-            android:title="@string/title_list_preference"
-            android:dialogTitle="@string/rollover_title"
-            android:entries="@array/roll_over_time_list"
-            android:entryValues="@array/roll_over_time_list" />
-        <ListPreference
-            android:key="list_preference"
-            android:title="@string/title_list_preference2"
-            android:dialogTitle="@string/exportfile_title"
-            android:entries="@array/export_file_type_list"
-            android:entryValues="@array/export_file_type_list" />
-        <ListPreference
-            android:key="list_preference"
-            android:title="Themes"/>
-        <ListPreference
-            android:key="list_preference"
-            android:title="Notification"
-            android:dialogTitle="Notification"
-            android:entries="@array/notification_type_list"
-            android:entryValues="@array/notification_type_list" />
-        <Preference
-            android:title="@string/title_intent_preference">
-            <intent android:action="com.cs465.uiuc.cs465_project.About" />
-        </Preference>
-        
-        <Preference
-            android:title="@string/title_intent_preference">
-            <intent android:action="com.cs465.uiuc.cs465_project.About" />
-        </Preference>
-
-
-    </PreferenceCategory>
-
+    <ListPreference
+        android:key="list_preference"
+        android:title="@string/title_list_preference"
+        android:dialogTitle="@string/rollover_title"
+        android:entries="@array/roll_over_time_list"
+        android:entryValues="@array/roll_over_time_list" />
+    <ListPreference
+        android:key="list_preference"
+        android:title="@string/title_list_preference2"
+        android:dialogTitle="@string/exportfile_title"
+        android:entries="@array/export_file_type_list"
+        android:entryValues="@array/export_file_type_list" />
+    <ListPreference
+        android:key="list_preference"
+        android:title="Themes"
+        android:entries="@array/theme_type_list"
+        android:entryValues="@array/theme_type_list"/>
+    <Preference
+        android:title="Parental Control">
+        <intent android:action="com.cs465.uiuc.cs465_project.ParentalControl" />
+    </Preference>
+    <ListPreference
+        android:key="list_preference"
+        android:title="Notification"
+        android:dialogTitle="Notification"
+        android:entries="@array/notification_type_list"
+        android:entryValues="@array/notification_type_list" />
+    <Preference
+        android:title="About"
+        android:id="@+id/preference">
+        <intent android:action="com.cs465.uiuc.cs465_project.About" />
+    </Preference>
 
 
 </PreferenceScreen>
