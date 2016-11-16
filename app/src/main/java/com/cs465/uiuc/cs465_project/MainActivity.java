@@ -61,8 +61,10 @@ public class MainActivity extends AppCompatActivity{
     TextView currentApp;
     TextView statsTime;
     int[] modButs;
-    int[] percents;
-    int[] times;
+    int[][] percents;
+    int[][] times;
+    CustomList adapter;
+    ListView faves;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +73,13 @@ public class MainActivity extends AppCompatActivity{
         barChart = (BarChart) findViewById(R.id.chart);
         barChart.setHighlightPerTapEnabled(false);
         barChart.setHighlightPerDragEnabled(false);
-        ListView faves = (ListView) findViewById(R.id.list_view);
+        faves = (ListView) findViewById(R.id.list_view);
         faves.setItemsCanFocus(true);
         timeView = 0;
         appSelected = 0;
         modChange = 0;
-        percents = new int[]{21, 16, 12, 9, 8, 8, 5, 4, 2, 2};
-        times = new int[]{52, 31, 20, 15, 12, 12, 7, 6, 3, 3};
+        percents = new int[][]{{37, 19, 17, 15, 12, 12, 7, 4, 2, 2}, {42, 29, 19, 16, 10, 9, 9, 5, 4, 3}, {45, 32, 21, 18, 16, 15, 10, 7, 2, 2}};
+        times = new int[][]{{52, 31, 20, 15, 12, 12, 7, 6, 3, 3}, {110, 71, 55, 40, 32, 29, 20, 15, 15, 10}, {517, 411, 302, 240, 199, 171, 90, 55, 47, 31}};
         modButs = new int[]{9, 10, 11};
         modLabels = new String[][]{{"7 Emails Sent", "15 Emails Opened", "9 Browsers Opened", "4 Notes Written", "2 Alarms Set", "27 Pictures Taken",
             "3 Videos Taken", "7 Times Muted", "32 Songs Played", "52 Unlocks", "6 Calls Made", "41 Texts Sent"},
@@ -127,6 +129,24 @@ public class MainActivity extends AppCompatActivity{
         barChart.setData(data);
         barChart.animateY(2000);
 
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, appNames);
+        adapter = new CustomList(MainActivity.this, appNames, modPics, percents, times);
+        faves.setAdapter(adapter);
+        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(timeView == 0) dataSet = new BarDataSet(apps[i].dailyEntry, "Daily");
+                else if(timeView == 1) dataSet = new BarDataSet(apps[i].weeklyEntry, "Weekly");
+                else dataSet = new BarDataSet(apps[i].monthlyEntry, "Monthly");
+                dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                currentApp.setText(appNames[i]);
+                appSelected = i;
+                data = new BarData(dataSet);
+                barChart.setData(data);
+                barChart.invalidate();
+            }
+        };
+        faves.setOnItemClickListener(itemClickListener);
+
         OnChartGestureListener gestureListener = new OnChartGestureListener() {
 
             public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {}
@@ -162,29 +182,13 @@ public class MainActivity extends AppCompatActivity{
                 modText[0].setText(modLabels[timeView][modButs[0]]);
                 modText[1].setText(modLabels[timeView][modButs[1]]);
                 modText[2].setText(modLabels[timeView][modButs[2]]);
+                adapter = new CustomList(MainActivity.this, appNames, modPics, percents, times);
+                faves.setAdapter(adapter);
             }
             public void onChartScale(MotionEvent me, float scaleX, float scaleY) {}
             public void onChartTranslate(MotionEvent me, float dX, float dY) {}};
 
         barChart.setOnChartGestureListener(gestureListener);
-
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, appNames);
-        CustomList adapter = new CustomList(MainActivity.this, appNames, modPics, percents, times);
-        faves.setAdapter(adapter);
-        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if(timeView == 0) dataSet = new BarDataSet(apps[i].dailyEntry, "Daily");
-                else if(timeView == 1) dataSet = new BarDataSet(apps[i].weeklyEntry, "Weekly");
-                else dataSet = new BarDataSet(apps[i].monthlyEntry, "Monthly");
-                dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-                currentApp.setText(appNames[i]);
-                appSelected = i;
-                data = new BarData(dataSet);
-                barChart.setData(data);
-                barChart.invalidate();
-            }
-        };
-        faves.setOnItemClickListener(itemClickListener);
     }
 
     public class MyXAxisValueFormatter implements IAxisValueFormatter{
@@ -220,10 +224,10 @@ public class MainActivity extends AppCompatActivity{
         private final Activity context;
         private final String[] appName;
         private final int[] imageId;
-        private final int[] percents;
-        private final int[] times;
+        private final int[][] percents;
+        private final int[][] times;
         public CustomList(Activity context,
-                          String[] appName, int[] imageId, int[] percents, int[] times) {
+                          String[] appName, int[] imageId, int[][] percents, int[][] times) {
             super(context, R.layout.list_single, appName);
             this.context = context;
             this.appName = appName;
@@ -244,8 +248,8 @@ public class MainActivity extends AppCompatActivity{
             txtTitle.setText(appName[position]);
             imageView.setImageResource(imageId[position]);
             barView.setMax(100);
-            barView.setProgress(percents[position]);
-            txtPercent.setText((times[position]/60) + "h " + (times[position]%60) + "m");
+            barView.setProgress(percents[timeView][position]);
+            txtPercent.setText((times[timeView][position]/60) + "h " + (times[timeView][position]%60) + "m");
             return rowView;
         }
     }
