@@ -48,9 +48,13 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:gravity="center"
+        android:layout_gravity="center"
         >
-
+        <!--
+            vvvvv replace this with numberpicker! vvvvv
+            -->
         <EditText
+
             android:id="@+id/timeText"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -110,83 +114,92 @@
         android:orientation="vertical"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
+        android:layout_gravity="center"
         >
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="horizontal" android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:orientation="horizontal"
             android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:gravity="center"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:layout_gravity="center"
             >
-            <Space
-                android:layout_width="@dimen/activity_horizontal_margin"
-                android:layout_height="wrap_content"
 
-                />
 
             <ImageView
+                android:id="@+id/image1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:src="@drawable/ic_alarm_on_black_24dp"
+                android:layout_weight="1"
 
                 />
             <!--
             this is temporary until i put the images in.
             -->
-            <CheckBox
+            <ImageView
+                android:layout_toRightOf="@id/image1"
+                android:id="@+id/image2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:src="@drawable/ic_alarm_on_black_24dp"
+                android:layout_weight="1"
                 />
-            <CheckBox
+            <ImageView
+                android:id="@+id/image3"
+                android:layout_toRightOf="@id/image2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:src="@drawable/ic_videocam_black_24dp"
+                android:layout_weight="1"
                 />
-            <CheckBox
+            <ImageView
+                android:id="@+id/image4"
+                android:layout_toRightOf="@id/image3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:src="@drawable/ic_audiotrack_black_24dp"
+                android:layout_weight="1"
                 />
-            <CheckBox
+            <ImageView
+                android:id="@+id/image5"
+                android:layout_toRightOf="@id/image4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:src="@drawable/ic_audiotrack_black_24dp"
+                android:layout_weight="1"
                 />
-            <Space
-                android:layout_width="@dimen/activity_horizontal_margin"
-                android:layout_height="wrap_content"
 
-                />
+
 
         </LinearLayout>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:gravity="center"
-        >
-        <Space
-            android:layout_width="@dimen/activity_horizontal_margin"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:layout_gravity="center"
+            >
 
-            />
         <CheckBox
+            android:id="@+id/check1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"
             />
             <!--
             maybe a vertical layout with two horizontal, or relative layout
@@ -194,38 +207,47 @@
             -->
 
         <CheckBox
+            android:id="@+id/check2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"
             />
         <CheckBox
+            android:id="@+id/check3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            />
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            />
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            />
-        <Space
-            android:layout_width="@dimen/activity_horizontal_margin"
-            android:layout_height="wrap_content"
+            android:layout_weight="1"
 
             />
+        <CheckBox
+            android:id="@+id/check4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"
+            />
+        <CheckBox
+            android:id="@+id/check5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"
+            />
+
+
 
         </LinearLayout>
-
         </LinearLayout>
+    <!--
+    In this area we will have a list of goals, other spaces should make room for this one
+    if needed.
+    -->
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
