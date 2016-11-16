@@ -18,9 +18,13 @@
             android:text="Time limit settings"
             android:textSize="30sp"
             android:textAlignment="center"
+            android:textColor="@color/colorBlack"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
+
+
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -72,5 +76,9 @@
             android:id="@+id/textView3"
             android:layout_weight="1" />
     </LinearLayout>
-
+    <Button
+        android:text="Commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2" />
 </LinearLayout>
