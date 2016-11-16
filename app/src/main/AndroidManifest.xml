@@ -34,7 +34,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ParentalControlActivity"></activity>
+        <activity
+            android:name=".ParentalControlActivity"
+            android:label="Parental Control">
+            <intent-filter>
+                <action android:name="com.cs465.uiuc.cs465_project.ParentalControl" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ParentalControlSettings"></activity>
     </application>
 
 </manifest>

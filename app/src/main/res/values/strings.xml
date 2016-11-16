@@ -65,7 +65,11 @@
         <item>push notification</item>
         <item>drop-down notification</item>
     </string-array>
-
+    <string-array name="theme_type_list">
+        <item>Dark</item>
+        <item>Bright</item>
+        <item>Colorful</item>
+    </string-array>
     <string name="title_intent_preference">title_intent_preference</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string-array name="dayWeekMenu">
