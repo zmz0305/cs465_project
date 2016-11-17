@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity{
     int[][] times;
     CustomList adapter;
     ListView faves;
+    int[] appIcons;
+    ImageView[] arrows;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +93,13 @@ public class MainActivity extends AppCompatActivity{
         modPics = new int[]{R.drawable.ic_email_black_24dp, R.drawable.ic_drafts_black_24dp, R.drawable.ic_language_black_24dp, R.drawable.ic_mode_edit_black_24dp,
                 R.drawable.ic_alarm_on_black_24dp, R.drawable.ic_photo_camera_black_24dp, R.drawable.ic_videocam_black_24dp, R.drawable.ic_volume_off_black_24dp,
                 R.drawable.ic_audiotrack_black_24dp, R.drawable.ic_lock_open_black_24dp, R.drawable.ic_phone_in_talk_black_24dp, R.drawable.ic_question_answer_black_24dp};
+        appIcons = new int[]{R.mipmap.facebook, R.mipmap.snapchat, R.mipmap.instagram,
+                R.mipmap.twitter, R.mipmap.flappybird, R.drawable.ic_language_black_24dp,
+                R.mipmap.settings, R.mipmap.text, R.mipmap.phone, R.mipmap.groupme};
+        arrows = new ImageView[2];
+        arrows[0] = (ImageView)findViewById(R.id.left_arrow);
+        arrows[1] = (ImageView)findViewById(R.id.right_arrow);
+        arrows[1].setImageResource(R.drawable.rightarrow);
         statsTime = (TextView)findViewById(R.id.mod_time);
         statsTime.setText(modTime[timeView]);
         apps = new AppItem[10];
@@ -130,7 +139,7 @@ public class MainActivity extends AppCompatActivity{
         barChart.animateY(2000);
 
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, appNames);
-        adapter = new CustomList(MainActivity.this, appNames, modPics, percents, times);
+        adapter = new CustomList(MainActivity.this, appNames, appIcons, percents, times);
         faves.setAdapter(adapter);
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -162,6 +171,8 @@ public class MainActivity extends AppCompatActivity{
                     data = new BarData(dataSet);
                     barChart.setData(data);
                     xAxis.setValueFormatter(new MyXAxisValueFormatter(labels[1]));
+                    arrows[0].setImageResource(R.drawable.leftarrow);
+                    arrows[1].setImageResource(R.drawable.rightarrow);
                     timeView = 1;
                 } else if (velocityX > .5f && timeView == 1) {
                     dataSet = new BarDataSet(apps[appSelected].dailyEntry, "Daily");
@@ -169,6 +180,7 @@ public class MainActivity extends AppCompatActivity{
                     data = new BarData(dataSet);
                     barChart.setData(data);
                     xAxis.setValueFormatter(new MyXAxisValueFormatter(labels[0]));
+                    arrows[0].setImageResource(0);
                     timeView = 0;
                 } else if (velocityX < -.5f && timeView == 1) {
                     dataSet = new BarDataSet(apps[appSelected].monthlyEntry, "Monthly");
@@ -176,13 +188,14 @@ public class MainActivity extends AppCompatActivity{
                     data = new BarData(dataSet);
                     barChart.setData(data);
                     xAxis.setValueFormatter(new MyXAxisValueFormatter(labels[2]));
+                    arrows[1].setImageResource(0);
                     timeView = 2;
                 }
                 statsTime.setText(modTime[timeView]);
                 modText[0].setText(modLabels[timeView][modButs[0]]);
                 modText[1].setText(modLabels[timeView][modButs[1]]);
                 modText[2].setText(modLabels[timeView][modButs[2]]);
-                adapter = new CustomList(MainActivity.this, appNames, modPics, percents, times);
+                adapter = new CustomList(MainActivity.this, appNames, appIcons, percents, times);
                 faves.setAdapter(adapter);
             }
             public void onChartScale(MotionEvent me, float scaleX, float scaleY) {}
