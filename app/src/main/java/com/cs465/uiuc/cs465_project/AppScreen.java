@@ -10,8 +10,6 @@ public class AppScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_screen);
-
-
     }
 
     public void favToggle(View v) {

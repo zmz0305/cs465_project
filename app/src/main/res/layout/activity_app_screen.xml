@@ -377,8 +377,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:id="@+id/visible"
-                    android:background="@drawable/ic_visibility_black_48dp"
+                    android:id="@+id/invisible"
+                    android:background="@drawable/ic_visibility_off_black_48dp"
                     android:onClick="visToggle"/>
             </LinearLayout>
             <LinearLayout
@@ -405,8 +405,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:id="@+id/visible"
-                    android:background="@drawable/ic_visibility_black_48dp"
+                    android:id="@+id/invisible"
+                    android:background="@drawable/ic_visibility_off_black_48dp"
                     android:onClick="visToggle"/>
             </LinearLayout>
 
