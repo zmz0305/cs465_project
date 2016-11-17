@@ -1,18 +1,18 @@
 package com.cs465.uiuc.cs465_project;
 
 import android.app.DatePickerDialog;
-import android.icu.text.SimpleDateFormat;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.icu.util.Calendar;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DataOutputActivity extends AppCompatActivity implements View.OnClickListener {
@@ -54,6 +54,34 @@ public class DataOutputActivity extends AppCompatActivity implements View.OnClic
 
         fromDate.setOnClickListener(this);
         toDate.setOnClickListener(this);
+
+        ColorMatrix matrix = new ColorMatrix();
+        matrix.setSaturation(0);
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+
+        ImageView imageView = (ImageView)findViewById(R.id.image1);
+        imageView.setColorFilter(filter);
+
+        imageView = (ImageView)findViewById(R.id.image2);
+        imageView.setColorFilter(filter);
+
+        imageView = (ImageView)findViewById(R.id.image3);
+        imageView.setColorFilter(filter);
+
+        imageView = (ImageView)findViewById(R.id.image4);
+        imageView.setColorFilter(filter);
+
+        imageView = (ImageView)findViewById(R.id.image5);
+        imageView.setColorFilter(filter);
+
+        imageView = (ImageView)findViewById(R.id.image6);
+        imageView.setColorFilter(filter);
+
+        imageView = (ImageView)findViewById(R.id.image7);
+        imageView.setColorFilter(filter);
+
+        imageView = (ImageView)findViewById(R.id.image8);
+        imageView.setColorFilter(filter);
     }
 
     @Override
@@ -101,6 +129,22 @@ public class DataOutputActivity extends AppCompatActivity implements View.OnClic
                         }
                     }, currentYear, currentMonth, currentDay);
             datePickerDialog.show();
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public void selectionToggle(View v) {
+        ImageView imageView = (ImageView) v;
+        if (imageView.getColorFilter() != null) {
+            imageView.clearColorFilter();
+            imageView.setImageAlpha(255);
+        } else {
+            ColorMatrix matrix = new ColorMatrix();
+            matrix.setSaturation(0);
+
+            ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+            imageView.setColorFilter(filter);
+            imageView.setImageAlpha(128);
         }
     }
 }
