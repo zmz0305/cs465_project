@@ -1,14 +1,19 @@
 package com.cs465.uiuc.cs465_project;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
+import android.graphics.drawable.Drawable;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -90,6 +95,49 @@ public class DataOutputActivity extends AppCompatActivity implements View.OnClic
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.activity_feed_button:
+                // User chose the "SettingsActivity" item, show the app settings UI...
+                Intent activityIntent = new Intent(this, MainActivity.class);
+                this.startActivity(activityIntent);
+                return true;
+
+            case R.id.my_limit_button:
+                // User chose the "Favorite" action, mark the current item
+                // as a favorite...
+                Intent myLimitIntent = new Intent(this, GoalsActivity.class);
+                this.startActivity(myLimitIntent);
+                return true;
+
+            case R.id.my_apps_button:
+                // User chose the "Favorite" action, mark the current item
+                // as a favorite...
+                Intent appsIntent = new Intent(this, AppScreen.class);
+                this.startActivity(appsIntent);
+                return true;
+
+            case R.id.settings_button:
+                // User chose the "Favorite" action, mark the current item
+                // as a favorite...
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                this.startActivity(settingsIntent);
+                return true;
+
+            case R.id.export_data_button:
+                // User chose the "Favorite" action, mark the current item
+                // as a favorite...
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View v) {
@@ -146,5 +194,69 @@ public class DataOutputActivity extends AppCompatActivity implements View.OnClic
             imageView.setColorFilter(filter);
             imageView.setImageAlpha(128);
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void buttonToggle(View v) {
+        if (v.getId() == R.id.selectAllButton) {
+            ImageView imageView = (ImageView)findViewById(R.id.image1);
+            imageView.clearColorFilter();
+
+            imageView = (ImageView)findViewById(R.id.image2);
+            imageView.clearColorFilter();
+
+            imageView = (ImageView)findViewById(R.id.image3);
+            imageView.clearColorFilter();
+
+            imageView = (ImageView)findViewById(R.id.image4);
+            imageView.clearColorFilter();
+
+            imageView = (ImageView)findViewById(R.id.image5);
+            imageView.clearColorFilter();
+
+            imageView = (ImageView)findViewById(R.id.image6);
+            imageView.clearColorFilter();
+
+            imageView = (ImageView)findViewById(R.id.image7);
+            imageView.clearColorFilter();
+
+            imageView = (ImageView)findViewById(R.id.image8);
+            imageView.clearColorFilter();
+        }
+
+        if (v.getId() == R.id.unSelectAllButton) {
+            ColorMatrix matrix = new ColorMatrix();
+            matrix.setSaturation(0);
+            ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+
+            ImageView imageView = (ImageView)findViewById(R.id.image1);
+            imageView.setColorFilter(filter);
+
+            imageView = (ImageView)findViewById(R.id.image2);
+            imageView.setColorFilter(filter);
+
+            imageView = (ImageView)findViewById(R.id.image3);
+            imageView.setColorFilter(filter);
+
+            imageView = (ImageView)findViewById(R.id.image4);
+            imageView.setColorFilter(filter);
+
+            imageView = (ImageView)findViewById(R.id.image5);
+            imageView.setColorFilter(filter);
+
+            imageView = (ImageView)findViewById(R.id.image6);
+            imageView.setColorFilter(filter);
+
+            imageView = (ImageView)findViewById(R.id.image7);
+            imageView.setColorFilter(filter);
+
+            imageView = (ImageView)findViewById(R.id.image8);
+            imageView.setColorFilter(filter);
+        }
+    }
+
+    public void backToMain (View v) {
+        Intent activityIntent = new Intent(this, MainActivity.class);
+        this.startActivity(activityIntent);
     }
 }
