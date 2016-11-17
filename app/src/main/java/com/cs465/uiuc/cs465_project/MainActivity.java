@@ -34,7 +34,6 @@ import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.vision.text.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/list_image2"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_alarm_on_black_24dp"/>
+        <TextView
+            android:id="@+id/list_text2"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:textSize="18sp"
+            android:textColor="@color/colorBlack"
+            android:gravity="center_vertical"
+            android:text="Test App"/>
+        <ProgressBar
+            android:id="@+id/list_bar2"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            style="@android:style/Widget.ProgressBar.Horizontal"/>
+        <TextView
+            android:id="@+id/list_percent2"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
+            android:textSize="16sp"
+            android:textColor="@color/colorBlack"
+            android:gravity="center"
+            android:text="2h 46m"/>
+
+</LinearLayout>

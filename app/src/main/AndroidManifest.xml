@@ -23,6 +23,9 @@
             android:label="@string/data_output_name" />
         <activity android:name=".AppScreen" />
         <activity
+            android:name=".Goal2Activity"
+            android:label="Create New Goal" />
+        <activity
             android:name=".GoalsActivity"
             android:label="My Goals" />
         <activity
@@ -43,7 +46,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ParentalControlSettings"></activity>
+        <activity android:name=".ParentalControlSettings" />
     </application>
 
 </manifest>

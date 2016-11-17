@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.cs465.uiuc.cs465_project.GoalsActivity"
+    tools:context="com.cs465.uiuc.cs465_project.Goal2Activity"
     >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,6 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="4"/>
+        <!--
+        Need visual feedback for which app was selected.
+        -->
         <Button
             android:id="@+id/selectapp"
             android:layout_width="wrap_content"
@@ -25,6 +28,7 @@
             android:text="Select App"
             android:layout_weight="5"
             android:background="@color/colorGrey"
+            android:onClick="openApps"
 
         />
         <Space
@@ -32,23 +36,34 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"/>
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBlack"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        />
         <TextView
             android:id="@+id/Limit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Limit"
             android:layout_gravity="center"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
             />
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal" android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
+
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:gravity="center"
         android:layout_gravity="center"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         >
         <!--
             vvvvv replace this with numberpicker! vvvvv
@@ -78,7 +93,6 @@
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-
             />
         <Space
             android:layout_width="wrap_content"
@@ -98,6 +112,15 @@
 
             />
         </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBlack"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        />
     <TextView
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
@@ -108,12 +131,11 @@
         android:text="What should you use instead?"
         android:layout_gravity="center"
         />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
         android:layout_gravity="center"
         >
 
@@ -133,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_alarm_on_black_24dp"
+                android:src="@mipmap/groupme"
                 android:layout_weight="1"
 
                 />
@@ -147,7 +169,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_alarm_on_black_24dp"
+
+                android:src="@mipmap/facebook"
                 android:layout_weight="1"
                 />
             <ImageView
@@ -157,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_videocam_black_24dp"
+                android:src="@mipmap/instagram"
                 android:layout_weight="1"
                 />
             <ImageView
@@ -167,7 +190,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_audiotrack_black_24dp"
+                android:src="@mipmap/twitter"
                 android:layout_weight="1"
                 />
             <ImageView
@@ -177,7 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_audiotrack_black_24dp"
+                android:src="@mipmap/snapchat"
                 android:layout_weight="1"
                 />
 
@@ -201,10 +224,6 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_weight="1"
             />
-            <!--
-            maybe a vertical layout with two horizontal, or relative layout
-            get icons then place check boxes right under.
-            -->
 
         <CheckBox
             android:id="@+id/check2"
@@ -248,8 +267,9 @@
     In this area we will have a list of goals, other spaces should make room for this one
     if needed.
     -->
+
     <Space
-        android:layout_width="match_parent"
+       android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         />
@@ -272,7 +292,7 @@
             android:layout_weight="5"
             android:background="@color/colorBlue"
             android:textColor="@color/colorWhite"
-
+            android:onClick="goToGoals"
             />
         <Space
             android:layout_width="wrap_content"
