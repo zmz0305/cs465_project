@@ -21,7 +21,8 @@
         <activity
             android:name=".DataOutputActivity"
             android:label="@string/data_output_name" />
-        <activity android:name=".AppScreen" />
+        <activity android:name=".AppScreen"
+            android:label="My Apps"/>
         <activity
             android:name=".Goal2Activity"
             android:label="Create New Goal" />
