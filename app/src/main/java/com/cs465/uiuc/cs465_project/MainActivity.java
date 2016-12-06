@@ -26,6 +26,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity{
     int timeView;
     int appSelected;
     XAxis xAxis;
+    YAxis yAxis;
     String[][] labels;
     TextView[] modText;
     ImageButton[] modButton;
@@ -62,10 +64,12 @@ public class MainActivity extends AppCompatActivity{
     int[] modButs;
     int[][] percents;
     int[][] times;
+    boolean[] favoritesArray;
     CustomList adapter;
     ListView faves;
     int[] appIcons;
     ImageView[] arrows;
+    int[][] barColors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +80,13 @@ public class MainActivity extends AppCompatActivity{
         barChart.setHighlightPerDragEnabled(false);
         faves = (ListView) findViewById(R.id.list_view);
         faves.setItemsCanFocus(true);
+        barColors = new int[10][21];
         timeView = 0;
         appSelected = 0;
         modChange = 0;
-        percents = new int[][]{{37, 19, 17, 15, 12, 12, 7, 4, 2, 2}, {42, 29, 19, 16, 10, 9, 9, 5, 4, 3}, {45, 32, 21, 18, 16, 15, 10, 7, 2, 2}};
-        times = new int[][]{{52, 31, 20, 15, 12, 12, 7, 6, 3, 3}, {110, 71, 55, 40, 32, 29, 20, 15, 15, 10}, {517, 411, 302, 240, 199, 171, 90, 55, 47, 31}};
+        percents = new int[][]{{37, 19, 17, 15, 12, 12, 7, 18, 9, 4}, {42, 29, 19, 16, 10, 9, 9, 17, 12, 6}, {45, 32, 21, 18, 16, 15, 10, 19, 12, 4}};
+        times = new int[][]{{52, 31, 20, 15, 12, 12, 7, 13, 7, 3}, {110, 71, 55, 40, 32, 29, 20, 42, 30, 21}, {517, 411, 302, 240, 199, 171, 90, 100, 71, 31}};
+        favoritesArray = new boolean[]{true, true, true, true, true, true, true, false, false, false};
         modButs = new int[]{9, 10, 11};
         modLabels = new String[][]{{"7 Emails Sent", "15 Emails Opened", "9 Browsers Opened", "4 Notes Written", "2 Alarms Set", "27 Pictures Taken",
             "3 Videos Taken", "7 Times Muted", "32 Songs Played", "52 Unlocks", "6 Calls Made", "41 Texts Sent"},
@@ -125,12 +131,29 @@ public class MainActivity extends AppCompatActivity{
         xAxis.setValueFormatter(new MyXAxisValueFormatter(labels[0]));
         for (int j = 0; j < 10; j++) {
             for (int i = 0; i < 7; i++) {
-                apps[j].addEntry(i, (float) (Math.random() * .75 + 0.1), (float) (Math.random() * 2 + 0.5), (float) (Math.random() * 10 + 2));
+                float dEntry = (float) (Math.random() * .75 + 0.1);
+                float wEntry = (float) (Math.random() * 2 + 0.5);
+                float mEntry = (float) (Math.random() * 10 + 2);
+                apps[j].addEntry(i, dEntry, wEntry, mEntry);
+                if(dEntry < .35) barColors[j][i] = Color.GREEN;
+                else if(dEntry < .6) barColors[j][i] = Color.YELLOW;
+                else barColors[j][i] = Color.RED;
+                if(wEntry < 1.16) barColors[j][i+7] = Color.GREEN;
+                else if(wEntry < 1.79) barColors[j][i+7] = Color.YELLOW;
+                else barColors[j][i+7] = Color.RED;
+                if(mEntry < 5.33) barColors[j][i+14] = Color.GREEN;
+                else if(mEntry < 8.67) barColors[j][i+14] = Color.YELLOW;
+                else barColors[j][i+14] = Color.RED;
             }
         }
         dataSet = new BarDataSet(apps[0].dailyEntry, "Daily");
-        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        dataSet.setColors(barColors[0][0], barColors[0][1], barColors[0][2], barColors[0][3], barColors[0][4], barColors[0][5], barColors[0][6]);
         dataSet.setValueTextColor(Color.BLACK);
+        yAxis = barChart.getAxisLeft();
+        yAxis.setAxisMinimum(0);
+        yAxis.setAxisMaximum(1f);
+        barChart.getAxisRight().setEnabled(false);
+
 
         data = new BarData(dataSet);
         barChart.setScaleEnabled(false);
@@ -138,14 +161,15 @@ public class MainActivity extends AppCompatActivity{
         barChart.animateY(2000);
 
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, appNames);
-        adapter = new CustomList(MainActivity.this, appNames, appIcons, percents, times);
+        adapter = new CustomList(MainActivity.this, appNames, appIcons, percents, times, favoritesArray);
         faves.setAdapter(adapter);
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if(timeView == 0) dataSet = new BarDataSet(apps[i].dailyEntry, "Daily");
                 else if(timeView == 1) dataSet = new BarDataSet(apps[i].weeklyEntry, "Weekly");
                 else dataSet = new BarDataSet(apps[i].monthlyEntry, "Monthly");
-                dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                dataSet.setColors(barColors[i][(timeView*7)], barColors[i][1+(timeView*7)], barColors[i][2+(timeView*7)], barColors[i][3+(timeView*7)],
+                        barColors[i][4+(timeView*7)], barColors[i][5+(timeView*7)], barColors[i][6+(timeView*7)]);
                 currentApp.setText(appNames[i]);
                 appSelected = i;
                 data = new BarData(dataSet);
@@ -165,36 +189,45 @@ public class MainActivity extends AppCompatActivity{
 
             public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
                 if ((velocityX < -.5f && timeView == 0) || (velocityX > .5f && timeView == 2)) {
+                    timeView = 1;
                     dataSet = new BarDataSet(apps[appSelected].weeklyEntry, "Weekly");
-                    dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                    dataSet.setColors(barColors[appSelected][(timeView*7)], barColors[appSelected][1+(timeView*7)], barColors[appSelected][2+(timeView*7)],
+                            barColors[appSelected][3+(timeView*7)], barColors[appSelected][4+(timeView*7)], barColors[appSelected][5+(timeView*7)],
+                            barColors[appSelected][6+(timeView*7)]);
                     data = new BarData(dataSet);
+                    yAxis.setAxisMaximum(2.8f);
                     barChart.setData(data);
                     xAxis.setValueFormatter(new MyXAxisValueFormatter(labels[1]));
                     arrows[0].setImageResource(R.drawable.leftarrow);
                     arrows[1].setImageResource(R.drawable.rightarrow);
-                    timeView = 1;
                 } else if (velocityX > .5f && timeView == 1) {
+                    timeView = 0;
                     dataSet = new BarDataSet(apps[appSelected].dailyEntry, "Daily");
-                    dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                    dataSet.setColors(barColors[appSelected][(timeView*7)], barColors[appSelected][1+(timeView*7)], barColors[appSelected][2+(timeView*7)],
+                            barColors[appSelected][3+(timeView*7)], barColors[appSelected][4+(timeView*7)], barColors[appSelected][5+(timeView*7)],
+                            barColors[appSelected][6+(timeView*7)]);
                     data = new BarData(dataSet);
+                    yAxis.setAxisMaximum(1f);
                     barChart.setData(data);
                     xAxis.setValueFormatter(new MyXAxisValueFormatter(labels[0]));
                     arrows[0].setImageResource(0);
-                    timeView = 0;
                 } else if (velocityX < -.5f && timeView == 1) {
+                    timeView = 2;
                     dataSet = new BarDataSet(apps[appSelected].monthlyEntry, "Monthly");
-                    dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                    dataSet.setColors(barColors[appSelected][(timeView*7)], barColors[appSelected][1+(timeView*7)], barColors[appSelected][2+(timeView*7)],
+                            barColors[appSelected][3+(timeView*7)], barColors[appSelected][4+(timeView*7)], barColors[appSelected][5+(timeView*7)],
+                            barColors[appSelected][6+(timeView*7)]);
                     data = new BarData(dataSet);
+                    yAxis.setAxisMaximum(14f);
                     barChart.setData(data);
                     xAxis.setValueFormatter(new MyXAxisValueFormatter(labels[2]));
                     arrows[1].setImageResource(0);
-                    timeView = 2;
                 }
                 statsTime.setText(modTime[timeView]);
                 modText[0].setText(modLabels[timeView][modButs[0]]);
                 modText[1].setText(modLabels[timeView][modButs[1]]);
                 modText[2].setText(modLabels[timeView][modButs[2]]);
-                adapter = new CustomList(MainActivity.this, appNames, appIcons, percents, times);
+                adapter = new CustomList(MainActivity.this, appNames, appIcons, percents, times, favoritesArray);
                 faves.setAdapter(adapter);
             }
             public void onChartScale(MotionEvent me, float scaleX, float scaleY) {}
@@ -238,14 +271,16 @@ public class MainActivity extends AppCompatActivity{
         private final int[] imageId;
         private final int[][] percents;
         private final int[][] times;
+        private final boolean favorite[];
         public CustomList(Activity context,
-                          String[] appName, int[] imageId, int[][] percents, int[][] times) {
+                          String[] appName, int[] imageId, int[][] percents, int[][] times, boolean[] favorite) {
             super(context, R.layout.list_single, appName);
             this.context = context;
             this.appName = appName;
             this.imageId = imageId;
             this.percents = percents;
             this.times = times;
+            this.favorite = favorite;
         }
 
         public View getView(int position, View view, ViewGroup parent) {
@@ -257,6 +292,7 @@ public class MainActivity extends AppCompatActivity{
             ProgressBar barView = (ProgressBar)rowView.findViewById(R.id.list_bar);
             TextView txtPercent = (TextView)rowView.findViewById(R.id.list_percent);
 
+            if(!favorite[position]) txtTitle.setTextColor(Color.GRAY);
             txtTitle.setText(appName[position]);
             imageView.setImageResource(imageId[position]);
             barView.setMax(100);
