@@ -6,7 +6,12 @@ import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.drawable.Drawable;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -33,6 +38,16 @@ public class DataOutputActivity extends AppCompatActivity implements View.OnClic
     private int currentMonth;
     private int currentDay;
 
+    private int fromYear;
+    private int fromMonth;
+    private int fromDay;
+
+    private int toYear;
+    private int toMonth;
+    private int toDay;
+
+    private boolean hasSetToDate;
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +61,22 @@ public class DataOutputActivity extends AppCompatActivity implements View.OnClic
         currentMonth = c.get(Calendar.MONTH);
         currentDay = c.get(Calendar.DAY_OF_MONTH);
 
+        fromYear = currentYear;
+        fromMonth = currentMonth;
+        fromDay = currentDay;
+
+        toYear = currentYear;
+        toMonth = currentMonth;
+        toDay = currentDay;
+
         if (currentDay < 10) {
-            fromDateText.setText("   " + MONTHS[currentMonth] + " / 0" + currentDay + " / " + currentYear + "  ");
-            toDateText.setText("   " + MONTHS[currentMonth] + " / 0" + currentDay + " / " + currentYear + "  ");
+            //fromDateText.setText("   " + MONTHS[fromMonth] + " / 0" + fromDay + " / " + fromYear + "  ");
+            fromDateText.setText("       /    /       ");
+            toDateText.setText("       /    /       ");
         } else {
-            fromDateText.setText("   " + MONTHS[currentMonth] + " / " + currentDay + " / " + currentYear + "  ");
-            toDateText.setText("   " + MONTHS[currentMonth] + " / " + currentDay + " / " + currentYear + "  ");
+            //fromDateText.setText("   " + MONTHS[fromMonth] + " / " + fromDay + " / " + fromYear + "  ");
+            fromDateText.setText("       /    /       ");
+            toDateText.setText("       /    /       ");
         }
 
         fromDate = (Button) findViewById(R.id.fromDate);
@@ -147,16 +172,24 @@ public class DataOutputActivity extends AppCompatActivity implements View.OnClic
 
                         @Override
                         public void onDateSet(DatePicker view, int year, int month, int day) {
-                            currentYear = year;
-                            currentMonth = month;
-                            currentDay = day;
+                            fromYear = year;
+                            fromMonth = month;
+                            fromDay = day;
+
                             if (day < 10) {
                                 fromDateText.setText("   " + MONTHS[month] + " / 0" + day + " / " + year + "  ");
                             } else {
                                 fromDateText.setText("   " + MONTHS[month] + " / " + day + " / " + year + "  ");
                             }
                         }
-                    }, currentYear, currentMonth, currentDay);
+                    }, fromYear, fromMonth, fromDay);
+            datePickerDialog.getDatePicker().setMinDate(new Date().getTime());
+
+            if (!toDateText.getText().equals("       /    /       ")) {
+                Calendar maxDate = Calendar.getInstance();
+                maxDate.set(toYear, toMonth, toDay);
+                datePickerDialog.getDatePicker().setMaxDate(maxDate.getTimeInMillis());
+            }
             datePickerDialog.show();
         }
 
@@ -166,16 +199,21 @@ public class DataOutputActivity extends AppCompatActivity implements View.OnClic
 
                         @Override
                         public void onDateSet(DatePicker view, int year, int month, int day) {
-                            currentYear = year;
-                            currentMonth = month;
-                            currentDay = day;
+                            toYear = year;
+                            toMonth = month;
+                            toDay = day;
+
+                            hasSetToDate = true;
                             if (day < 10) {
                                 toDateText.setText("   " + MONTHS[month] + " / 0" + day + " / " + year + "  ");
                             } else {
                                 toDateText.setText("   " + MONTHS[month] + " / " + day + " / " + year + "  ");
                             }
                         }
-                    }, currentYear, currentMonth, currentDay);
+                    }, toYear, toMonth, toDay);
+            Calendar minDate = Calendar.getInstance();
+            minDate.set(fromYear, fromMonth, fromDay);
+            datePickerDialog.getDatePicker().setMinDate(minDate.getTimeInMillis());
             datePickerDialog.show();
         }
     }
