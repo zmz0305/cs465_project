@@ -1,6 +1,8 @@
 package com.cs465.uiuc.cs465_project;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,16 +26,43 @@ public class GoalsActivity extends AppCompatActivity {
     String[] appNames;
     CustomList adapter;
     ListView application;
+    String nString = null;
+    Bitmap nIcon = null;
+    int id = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal2);
-        appIcons = new int[]{R.mipmap.facebook, R.mipmap.snapchat, R.mipmap.instagram,
-                R.mipmap.twitter, R.mipmap.flappybird, R.drawable.ic_language_black_24dp,
-                R.mipmap.settings, R.mipmap.text, R.mipmap.phone, R.mipmap.groupme};
+        //retrieve extras here if they exist
+        //check if nString and nIcons are null, if so keep these appIcons and appNames
+        //else put nString at the end of appNames and nIcon at the end off appIcons
+
+        Bundle extra = getIntent().getExtras();
+
+        if(getIntent().hasExtra("activity")) {
+            // System.out.println("this works");
+            nString = extra.getString("appName");
+            //byte[] bytes = extra.getByteArray("icon2");
+            //nIcon = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            id = extra.getInt("id"); // append this first before trying to get the image
+            ImageView bits = new ImageView(this);
+            //bits.setImageBitmap(nIcon);
+            //bits.setId(0);
+
+            appIcons = new int[]{R.mipmap.facebook, R.mipmap.snapchat, R.mipmap.instagram,
+                    R.mipmap.twitter, R.mipmap.flappybird, R.drawable.ic_language_black_24dp,
+                    R.mipmap.settings, R.mipmap.text, R.mipmap.phone, R.mipmap.groupme, R.mipmap.ic_launcher};
+            appNames = new String[]{"Facebook", "Snapchat", "Instagram", "Twitter", "Flappy Bird",
+                    "Prism", "Settings", "Text", "Phone", "Groupme", nString};
+        }
+        else {
+            appIcons = new int[]{R.mipmap.facebook, R.mipmap.snapchat, R.mipmap.instagram,
+                    R.mipmap.twitter, R.mipmap.flappybird, R.drawable.ic_language_black_24dp,
+                    R.mipmap.settings, R.mipmap.text, R.mipmap.phone, R.mipmap.groupme};
+            appNames = new String[]{"Facebook", "Snapchat", "Instagram", "Twitter", "Flappy Bird", "Prism", "Settings", "Text", "Phone", "Groupme"};
+        }
         percents = new int[][]{{37, 19, 17, 15, 12, 12, 7, 4, 2, 2}, {42, 29, 19, 16, 10, 9, 9, 5, 4, 3}, {45, 32, 21, 18, 16, 15, 10, 7, 2, 2}};
         times = new int[][]{{52, 31, 20, 15, 12, 12, 7, 6, 3, 3}, {110, 71, 55, 40, 32, 29, 20, 15, 15, 10}, {517, 411, 302, 240, 199, 171, 90, 55, 47, 31}};
-        appNames = new String[]{"Facebook", "Snapchat", "Instagram", "Twitter", "Flappy Bird", "Prism", "Settings", "Text", "Phone", "Groupme"};
         application = (ListView) findViewById(R.id.goalList);
 
         adapter = new CustomList(GoalsActivity.this, appNames, appIcons, percents, times);
