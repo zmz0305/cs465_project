@@ -25,18 +25,4 @@ public class AppScreen extends AppCompatActivity {
             v.setId(R.id.favorite);
         }
     }
-
-    public void visToggle(View v){
-        int id = v.getId();
-
-        if (id == R.id.visible){
-            v.setBackgroundResource(R.drawable.ic_visibility_off_black_48dp);
-            v.setId(R.id.invisible);
-        }
-
-        if (id == R.id.invisible){
-            v.setBackgroundResource(R.drawable.ic_visibility_black_48dp);
-            v.setId(R.id.visible);
-        }
-    }
 }
